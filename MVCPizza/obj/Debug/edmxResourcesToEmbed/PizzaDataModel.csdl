@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PizzaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="categoryid" />
+    </Key>
+    <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="categorydescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="superiorcategoryid" Type="Int32" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="products" Relationship="Self.fk_categoryid" FromRole="category" ToRole="products" />
+  </EntityType>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="customerid" />
+    </Key>
+    <Property Name="customerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="contactperson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phonetype" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+    <Property Name="skypename" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="url" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="orders" Relationship="Self.fk_customerid" FromRole="customers" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="orderdetails">
+    <Key>
+      <PropertyRef Name="orderdetailid" />
+    </Key>
+    <Property Name="orderdetailid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderid" Type="Int32" />
+    <Property Name="productid" Type="Int32" />
+    <Property Name="productcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="quantity" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="price" Type="Decimal" Precision="5" Scale="2" />
+    <NavigationProperty Name="orders" Relationship="Self.fk_orderid" FromRole="orderdetails" ToRole="orders" />
+    <NavigationProperty Name="products" Relationship="Self.fk_productid" FromRole="orderdetails" ToRole="products" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="orderid" />
+    </Key>
+    <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderdate" Type="DateTime" Precision="0" />
+    <Property Name="customerid" Type="Int32" />
+    <Property Name="shiptoname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="shiptoaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="totalsum" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="paid" Type="Boolean" />
+    <NavigationProperty Name="customers" Relationship="Self.fk_customerid" FromRole="orders" ToRole="customers" />
+    <NavigationProperty Name="orderdetails" Relationship="Self.fk_orderid" FromRole="orders" ToRole="orderdetails" />
+  </EntityType>
+  <EntityType Name="orderssecurity">
+    <Key>
+      <PropertyRef Name="orderssecurityid" />
+    </Key>
+    <Property Name="orderssecurityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="productid" />
+    </Key>
+    <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryid" Type="Int32" />
+    <Property Name="productcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="productname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="picturefile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="productprice" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="barcode" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="supplierid" Type="Int32" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="category" Relationship="Self.fk_categoryid" FromRole="products" ToRole="category" />
+    <NavigationProperty Name="orderdetails" Relationship="Self.fk_productid" FromRole="products" ToRole="orderdetails" />
+    <Property Name="zusaetze" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vfxaudit">
+    <Key>
+      <PropertyRef Name="idvfxaudit" />
+    </Key>
+    <Property Name="table" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="recordid" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="datetime" Type="DateTime" Precision="3" />
+    <Property Name="changes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxaudit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxauditedtables">
+    <Key>
+      <PropertyRef Name="idvfxatbls" />
+    </Key>
+    <Property Name="audtable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxatbls" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="vfxdocuments">
+    <Key>
+      <PropertyRef Name="docid" />
+    </Key>
+    <Property Name="docid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="filedirect" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="parentkey" Type="Int32" />
+    <Property Name="filedescr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parenttbl" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="rtfid" Type="Int32" />
+    <Property Name="doctype" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="entryid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vfxfilter">
+    <Key>
+      <PropertyRef Name="idvfxfiltr" />
+    </Key>
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="objname" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="index" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="descending" Type="Boolean" />
+    <Property Name="layout" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="page" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="toolbar" Type="Boolean" />
+    <Property Name="idvfxfiltr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxfopen">
+    <Key>
+      <PropertyRef Name="idvfxfopen" />
+    </Key>
+    <Property Name="objectid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="objectno" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="groupcap" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="descr" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="form" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="parameter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="viewlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="newlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="copylevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="editlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="printlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="inetlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="eraselevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="favorites" Type="Boolean" />
+    <Property Name="primarykey" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="favordescr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="explevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="filtrlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="iconfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="notvisible" Type="Boolean" />
+    <Property Name="tbrcbosort" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="parentno" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="keybkey" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="allowedfor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxfopen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="xapname" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="auditlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="largeicon" Type="Boolean" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxgrouprights">
+    <Key>
+      <PropertyRef Name="idvfxgrrgh" />
+    </Key>
+    <Property Name="groupid" Type="Int32" />
+    <Property Name="formname" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="viewpermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="inspermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="editpermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="delpermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="prtpermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="copypermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="exppermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="fltrpermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="objectid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="objectno" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="idvfxgrrgh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idvfxfopen" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vfxgroups">
+    <Key>
+      <PropertyRef Name="groupid" />
+    </Key>
+    <Property Name="groupid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="groupdescr" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="fltrpermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="mreppermit" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="vfxipaddresses">
+    <Key>
+      <PropertyRef Name="ipid" />
+    </Key>
+    <Property Name="ipid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ipaddress" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vfxlock">
+    <Key>
+      <PropertyRef Name="idvfxlock" />
+    </Key>
+    <Property Name="table" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="record" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="user_name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxlock" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="vfxlog">
+    <Key>
+      <PropertyRef Name="idvfxlog" />
+    </Key>
+    <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="error" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="method" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="tables" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="memory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxloggedusers">
+    <Key>
+      <PropertyRef Name="idvfxlogur" />
+    </Key>
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="networkmi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ipaddress" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="lastlogin" Type="DateTime" Precision="3" />
+    <Property Name="datadir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="spid" Type="Int32" />
+    <Property Name="idvfxlogur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idvfxusr" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vfxpdef">
+    <Key>
+      <PropertyRef Name="parentid" />
+    </Key>
+    <Property Name="parentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="descript" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="fieldlen" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="ltextkey" Type="Boolean" />
+    <Property Name="caninsert" Type="Boolean" />
+    <Property Name="askforsave" Type="Boolean" />
+    <Property Name="newlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="columncnt" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="combostyle" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="proccode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="autogcode" Type="Boolean" />
+    <Property Name="useidfield" Type="Boolean" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxqueries">
+    <Key>
+      <PropertyRef Name="vfxqueryid" />
+    </Key>
+    <Property Name="querytitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descript" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="selectcmd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="colwidth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fieldtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="whereclaus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="orderclaus" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="crsresult" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="userlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="useraccess" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="active" Type="Boolean" />
+    <Property Name="vfxqueryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="caquery" Type="Boolean" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxreports">
+    <Key>
+      <PropertyRef Name="repid" />
+    </Key>
+    <Property Name="repid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="repuser" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="repform" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="repfile" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+    <Property Name="repcaption" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="repdesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxres">
+    <Key>
+      <PropertyRef Name="idvfxres" />
+    </Key>
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="objname" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="index" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="descending" Type="Boolean" />
+    <Property Name="layout" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="page" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="toolbar" Type="Boolean" />
+    <Property Name="idvfxres" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxrtf">
+    <Key>
+      <PropertyRef Name="rtfid" />
+    </Key>
+    <Property Name="rtfid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rtftext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="parenttbl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="parentid" Type="Int32" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxsdef">
+    <Key>
+      <PropertyRef Name="idvfxsdef" />
+    </Key>
+    <Property Name="ftpurl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ftpport" Type="Int32" />
+    <Property Name="ftpupini" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ftpdwnini" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ftpupdata" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ftpdwndata" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ftpupconf" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ftpdwnconf" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ftpuser" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ftppass" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="version" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="machine" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="profile" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="up_load" Type="Boolean" />
+    <Property Name="dn_load" Type="Boolean" />
+    <Property Name="use_boss" Type="Boolean" />
+    <Property Name="last_conn" Type="DateTime" Precision="3" />
+    <Property Name="last_up" Type="DateTime" Precision="3" />
+    <Property Name="last_dn" Type="DateTime" Precision="3" />
+    <Property Name="idvfxsdef" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxsys">
+    <Key>
+      <PropertyRef Name="idvfxsys" />
+    </Key>
+    <Property Name="magic_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="install_gs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dunconnpar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="updateapp" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="archpath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="install_ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dyndns" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="inst_click" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="appversion" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="lastcheckd" Type="DateTime" Precision="0" />
+    <Property Name="updtype" Type="Int32" />
+    <Property Name="customize" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="autologin" Type="Int32" />
+    <Property Name="lastsync" Type="DateTime" Precision="3" />
+    <Property Name="install_fc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="install_lh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxsys" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxsysid">
+    <Key>
+      <PropertyRef Name="idvfxsysid" />
+    </Key>
+    <Property Name="keyname" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="value" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="maxlen" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="idvfxsysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="vfxtasklist">
+    <Key>
+      <PropertyRef Name="idtasklist" />
+    </Key>
+    <Property Name="idtasklist" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="deadline" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="form" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="idkeyfield" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+    <Property Name="formdescr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="assnum" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="groupid" Type="Int32" />
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ins_usr" Type="Int32" />
+    <Property Name="ins_date" Type="DateTime" Precision="3" />
+    <Property Name="edt_usr" Type="Int32" />
+    <Property Name="edt_date" Type="DateTime" Precision="3" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxtaskliststatus">
+    <Key>
+      <PropertyRef Name="idtaskstat" />
+    </Key>
+    <Property Name="idtaskstat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descr" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vfxtipoftheday">
+    <Key>
+      <PropertyRef Name="idvfxtip" />
+    </Key>
+    <Property Name="idvfxtip" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tiptext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxtoolbox">
+    <Key>
+      <PropertyRef Name="idvfxtbox" />
+    </Key>
+    <Property Name="uniqueid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="showtype" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="tooltypeid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="tooltype" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="parentid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="toolname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="imagefile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="classtype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="setid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="classname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="classlib" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="tooltip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="helpfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="helpid" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="tooldata" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="displayord" Type="Int32" />
+    <Property Name="lockadd" Type="Boolean" />
+    <Property Name="lockdelete" Type="Boolean" />
+    <Property Name="lockrename" Type="Boolean" />
+    <Property Name="inactive" Type="Boolean" />
+    <Property Name="user" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="modified" Type="DateTime" Precision="3" />
+    <Property Name="idvfxtbox" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idvfxttype" Type="Int32" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxtooltype">
+    <Key>
+      <PropertyRef Name="idvfxttype" />
+    </Key>
+    <Property Name="uniqueid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="showtype" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="tooltype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="classname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="classlib" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="filetype" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="datavalues" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="shownew" Type="Boolean" />
+    <Property Name="propsheet" Type="Boolean" />
+    <Property Name="defaultid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="displayord" Type="Int32" />
+    <Property Name="tooltip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="inactive" Type="Boolean" />
+    <Property Name="user" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="modified" Type="DateTime" Precision="3" />
+    <Property Name="idvfxttype" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxusergroups">
+    <Key>
+      <PropertyRef Name="idvfxusrgr" />
+    </Key>
+    <Property Name="groupid" Type="Int32" />
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxusrgr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idvfxusr" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxuserlog">
+    <Key>
+      <PropertyRef Name="idvfxusrlg" />
+    </Key>
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="login" Type="DateTime" Precision="3" />
+    <Property Name="logout" Type="DateTime" Precision="3" />
+    <Property Name="ipaddress" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxusrlg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idvfxusr" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxusr">
+    <Key>
+      <PropertyRef Name="idvfxusr" />
+    </Key>
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="user_name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="userlevel" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="useraccess" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="firstview" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="lastsel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="formsize" Type="Decimal" Precision="2" Scale="1" />
+    <Property Name="agent" Type="Boolean" />
+    <Property Name="favorites" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="lastfile" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="chpassall" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="chpassnext" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="language" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="allusrcust" Type="Boolean" />
+    <Property Name="mulusrlog" Type="Boolean" />
+    <Property Name="fltrpermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="mreppermit" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="idvfxusr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ntlogon" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="strongpass" Type="Boolean" />
+    <Property Name="uniquepass" Type="Boolean" />
+    <Property Name="passexpiry" Type="DateTime" Precision="0" />
+    <Property Name="histrypass" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="notactive" Type="Boolean" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxplist">
+    <Key>
+      <PropertyRef Name="idvfxplist" />
+      <PropertyRef Name="timestamp_column" />
+    </Key>
+    <Property Name="picklist" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="code" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="descript" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="active" Type="Boolean" />
+    <Property Name="value" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="proccode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idvfxplist" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="parentid" Type="Int32" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxrep">
+    <Key>
+      <PropertyRef Name="reportid" />
+      <PropertyRef Name="timestamp_column" />
+    </Key>
+    <Property Name="reportid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rtypeid" Type="Int32" />
+    <Property Name="filename" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxrtemp">
+    <Key>
+      <PropertyRef Name="rtemplid" />
+      <PropertyRef Name="timestamp_column" />
+    </Key>
+    <Property Name="rtemplid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filename" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="rtypeid" Type="Int32" />
+    <Property Name="user" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="timestamp_column" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vfxrtype">
+    <Key>
+      <PropertyRef Name="rtypeid" />
+    </Key>
+    <Property Name="rtypeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filename" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="descr" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="sort" Type="Int32" />
+  </EntityType>
+  <Association Name="fk_categoryid">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="categoryid" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="categoryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_customerid">
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="customerid" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="customerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_orderid">
+    <End Role="orders" Type="Self.orders" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="orderid" />
+      </Principal>
+      <Dependent Role="orderdetails">
+        <PropertyRef Name="orderid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_productid">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="orderdetails">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PizzaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="category" EntityType="Self.category" />
+    <EntitySet Name="customers" EntityType="Self.customers" />
+    <EntitySet Name="orderdetails" EntityType="Self.orderdetails" />
+    <EntitySet Name="orders" EntityType="Self.orders" />
+    <EntitySet Name="orderssecurity" EntityType="Self.orderssecurity" />
+    <EntitySet Name="products" EntityType="Self.products" />
+    <EntitySet Name="vfxaudit" EntityType="Self.vfxaudit" />
+    <EntitySet Name="vfxauditedtables" EntityType="Self.vfxauditedtables" />
+    <EntitySet Name="vfxdocuments" EntityType="Self.vfxdocuments" />
+    <EntitySet Name="vfxfilter" EntityType="Self.vfxfilter" />
+    <EntitySet Name="vfxfopen" EntityType="Self.vfxfopen" />
+    <EntitySet Name="vfxgrouprights" EntityType="Self.vfxgrouprights" />
+    <EntitySet Name="vfxgroups" EntityType="Self.vfxgroups" />
+    <EntitySet Name="vfxipaddresses" EntityType="Self.vfxipaddresses" />
+    <EntitySet Name="vfxlock" EntityType="Self.vfxlock" />
+    <EntitySet Name="vfxlog" EntityType="Self.vfxlog" />
+    <EntitySet Name="vfxloggedusers" EntityType="Self.vfxloggedusers" />
+    <EntitySet Name="vfxpdef" EntityType="Self.vfxpdef" />
+    <EntitySet Name="vfxqueries" EntityType="Self.vfxqueries" />
+    <EntitySet Name="vfxreports" EntityType="Self.vfxreports" />
+    <EntitySet Name="vfxres" EntityType="Self.vfxres" />
+    <EntitySet Name="vfxrtf" EntityType="Self.vfxrtf" />
+    <EntitySet Name="vfxsdef" EntityType="Self.vfxsdef" />
+    <EntitySet Name="vfxsys" EntityType="Self.vfxsys" />
+    <EntitySet Name="vfxsysid" EntityType="Self.vfxsysid" />
+    <EntitySet Name="vfxtasklist" EntityType="Self.vfxtasklist" />
+    <EntitySet Name="vfxtaskliststatus" EntityType="Self.vfxtaskliststatus" />
+    <EntitySet Name="vfxtipoftheday" EntityType="Self.vfxtipoftheday" />
+    <EntitySet Name="vfxtoolbox" EntityType="Self.vfxtoolbox" />
+    <EntitySet Name="vfxtooltype" EntityType="Self.vfxtooltype" />
+    <EntitySet Name="vfxusergroups" EntityType="Self.vfxusergroups" />
+    <EntitySet Name="vfxuserlog" EntityType="Self.vfxuserlog" />
+    <EntitySet Name="vfxusr" EntityType="Self.vfxusr" />
+    <EntitySet Name="vfxplist" EntityType="Self.vfxplist" />
+    <EntitySet Name="vfxrep" EntityType="Self.vfxrep" />
+    <EntitySet Name="vfxrtemp" EntityType="Self.vfxrtemp" />
+    <EntitySet Name="vfxrtype" EntityType="Self.vfxrtype" />
+    <AssociationSet Name="fk_categoryid" Association="Self.fk_categoryid">
+      <End Role="category" EntitySet="category" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="fk_customerid" Association="Self.fk_customerid">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="fk_orderid" Association="Self.fk_orderid">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="orderdetails" EntitySet="orderdetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_productid" Association="Self.fk_productid">
+      <End Role="products" EntitySet="products" />
+      <End Role="orderdetails" EntitySet="orderdetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,74 @@
+﻿@model MVCPizza.products
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <h4> Details von products</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.picturefile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.picturefile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productprice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productprice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.barcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.barcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zusaetze)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zusaetze)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category.categoryname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.categoryname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.productid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

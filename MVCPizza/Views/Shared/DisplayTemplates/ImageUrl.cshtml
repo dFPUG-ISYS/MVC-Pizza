@@ -1,0 +1,10 @@
+﻿@model String
+
+@{var FilePath = "~/Images/" + Model;}
+@if (File.Exists( Server.MapPath(FilePath)))
+{
+    <img src="@Url.Content(FilePath)" />
+}
+else
+{
+<p>No Picture</p>}

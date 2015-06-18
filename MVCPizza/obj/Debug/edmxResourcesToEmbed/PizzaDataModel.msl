@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PizzaModelStoreContainer" CdmEntityContainer="PizzaEntities">
+    <EntitySetMapping Name="category">
+      <EntityTypeMapping TypeName="PizzaModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+          <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+          <ScalarProperty Name="categorydescription" ColumnName="categorydescription" />
+          <ScalarProperty Name="superiorcategoryid" ColumnName="superiorcategoryid" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="PizzaModel.customers">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="customerid" ColumnName="customerid" />
+          <ScalarProperty Name="customername" ColumnName="customername" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="contactperson" ColumnName="contactperson" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="phonetype" ColumnName="phonetype" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="skypename" ColumnName="skypename" />
+          <ScalarProperty Name="url" ColumnName="url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderdetails">
+      <EntityTypeMapping TypeName="PizzaModel.orderdetails">
+        <MappingFragment StoreEntitySet="orderdetails">
+          <ScalarProperty Name="orderdetailid" ColumnName="orderdetailid" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="productid" ColumnName="productid" />
+          <ScalarProperty Name="productcode" ColumnName="productcode" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="PizzaModel.orders">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="customerid" ColumnName="customerid" />
+          <ScalarProperty Name="shiptoname" ColumnName="shiptoname" />
+          <ScalarProperty Name="shiptoaddress" ColumnName="shiptoaddress" />
+          <ScalarProperty Name="totalsum" ColumnName="totalsum" />
+          <ScalarProperty Name="paid" ColumnName="paid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderssecurity">
+      <EntityTypeMapping TypeName="PizzaModel.orderssecurity">
+        <MappingFragment StoreEntitySet="orderssecurity">
+          <ScalarProperty Name="orderssecurityid" ColumnName="orderssecurityid" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="PizzaModel.products">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="zusaetze" ColumnName="zusaetze" />
+          <ScalarProperty Name="productid" ColumnName="productid" />
+          <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+          <ScalarProperty Name="productcode" ColumnName="productcode" />
+          <ScalarProperty Name="productname" ColumnName="productname" />
+          <ScalarProperty Name="picturefile" ColumnName="picturefile" />
+          <ScalarProperty Name="productprice" ColumnName="productprice" />
+          <ScalarProperty Name="barcode" ColumnName="barcode" />
+          <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxaudit">
+      <EntityTypeMapping TypeName="PizzaModel.vfxaudit">
+        <MappingFragment StoreEntitySet="vfxaudit">
+          <ScalarProperty Name="table" ColumnName="table" />
+          <ScalarProperty Name="recordid" ColumnName="recordid" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="changes" ColumnName="changes" />
+          <ScalarProperty Name="idvfxaudit" ColumnName="idvfxaudit" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxauditedtables">
+      <EntityTypeMapping TypeName="PizzaModel.vfxauditedtables">
+        <MappingFragment StoreEntitySet="vfxauditedtables">
+          <ScalarProperty Name="audtable" ColumnName="audtable" />
+          <ScalarProperty Name="idvfxatbls" ColumnName="idvfxatbls" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxdocuments">
+      <EntityTypeMapping TypeName="PizzaModel.vfxdocuments">
+        <MappingFragment StoreEntitySet="vfxdocuments">
+          <ScalarProperty Name="docid" ColumnName="docid" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="filedirect" ColumnName="filedirect" />
+          <ScalarProperty Name="parentkey" ColumnName="parentkey" />
+          <ScalarProperty Name="filedescr" ColumnName="filedescr" />
+          <ScalarProperty Name="parenttbl" ColumnName="parenttbl" />
+          <ScalarProperty Name="rtfid" ColumnName="rtfid" />
+          <ScalarProperty Name="doctype" ColumnName="doctype" />
+          <ScalarProperty Name="entryid" ColumnName="entryid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxfilter">
+      <EntityTypeMapping TypeName="PizzaModel.vfxfilter">
+        <MappingFragment StoreEntitySet="vfxfilter">
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="objname" ColumnName="objname" />
+          <ScalarProperty Name="index" ColumnName="index" />
+          <ScalarProperty Name="descending" ColumnName="descending" />
+          <ScalarProperty Name="layout" ColumnName="layout" />
+          <ScalarProperty Name="page" ColumnName="page" />
+          <ScalarProperty Name="toolbar" ColumnName="toolbar" />
+          <ScalarProperty Name="idvfxfiltr" ColumnName="idvfxfiltr" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxfopen">
+      <EntityTypeMapping TypeName="PizzaModel.vfxfopen">
+        <MappingFragment StoreEntitySet="vfxfopen">
+          <ScalarProperty Name="objectid" ColumnName="objectid" />
+          <ScalarProperty Name="objectno" ColumnName="objectno" />
+          <ScalarProperty Name="groupcap" ColumnName="groupcap" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="descr" ColumnName="descr" />
+          <ScalarProperty Name="form" ColumnName="form" />
+          <ScalarProperty Name="parameter" ColumnName="parameter" />
+          <ScalarProperty Name="viewlevel" ColumnName="viewlevel" />
+          <ScalarProperty Name="newlevel" ColumnName="newlevel" />
+          <ScalarProperty Name="copylevel" ColumnName="copylevel" />
+          <ScalarProperty Name="editlevel" ColumnName="editlevel" />
+          <ScalarProperty Name="printlevel" ColumnName="printlevel" />
+          <ScalarProperty Name="inetlevel" ColumnName="inetlevel" />
+          <ScalarProperty Name="eraselevel" ColumnName="eraselevel" />
+          <ScalarProperty Name="favorites" ColumnName="favorites" />
+          <ScalarProperty Name="primarykey" ColumnName="primarykey" />
+          <ScalarProperty Name="favordescr" ColumnName="favordescr" />
+          <ScalarProperty Name="explevel" ColumnName="explevel" />
+          <ScalarProperty Name="filtrlevel" ColumnName="filtrlevel" />
+          <ScalarProperty Name="iconfile" ColumnName="iconfile" />
+          <ScalarProperty Name="notvisible" ColumnName="notvisible" />
+          <ScalarProperty Name="tbrcbosort" ColumnName="tbrcbosort" />
+          <ScalarProperty Name="parentno" ColumnName="parentno" />
+          <ScalarProperty Name="keybkey" ColumnName="keybkey" />
+          <ScalarProperty Name="allowedfor" ColumnName="allowedfor" />
+          <ScalarProperty Name="idvfxfopen" ColumnName="idvfxfopen" />
+          <ScalarProperty Name="xapname" ColumnName="xapname" />
+          <ScalarProperty Name="auditlevel" ColumnName="auditlevel" />
+          <ScalarProperty Name="largeicon" ColumnName="largeicon" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxgrouprights">
+      <EntityTypeMapping TypeName="PizzaModel.vfxgrouprights">
+        <MappingFragment StoreEntitySet="vfxgrouprights">
+          <ScalarProperty Name="groupid" ColumnName="groupid" />
+          <ScalarProperty Name="formname" ColumnName="formname" />
+          <ScalarProperty Name="viewpermit" ColumnName="viewpermit" />
+          <ScalarProperty Name="inspermit" ColumnName="inspermit" />
+          <ScalarProperty Name="editpermit" ColumnName="editpermit" />
+          <ScalarProperty Name="delpermit" ColumnName="delpermit" />
+          <ScalarProperty Name="prtpermit" ColumnName="prtpermit" />
+          <ScalarProperty Name="copypermit" ColumnName="copypermit" />
+          <ScalarProperty Name="exppermit" ColumnName="exppermit" />
+          <ScalarProperty Name="fltrpermit" ColumnName="fltrpermit" />
+          <ScalarProperty Name="objectid" ColumnName="objectid" />
+          <ScalarProperty Name="objectno" ColumnName="objectno" />
+          <ScalarProperty Name="idvfxgrrgh" ColumnName="idvfxgrrgh" />
+          <ScalarProperty Name="idvfxfopen" ColumnName="idvfxfopen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxgroups">
+      <EntityTypeMapping TypeName="PizzaModel.vfxgroups">
+        <MappingFragment StoreEntitySet="vfxgroups">
+          <ScalarProperty Name="groupid" ColumnName="groupid" />
+          <ScalarProperty Name="groupdescr" ColumnName="groupdescr" />
+          <ScalarProperty Name="fltrpermit" ColumnName="fltrpermit" />
+          <ScalarProperty Name="mreppermit" ColumnName="mreppermit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxipaddresses">
+      <EntityTypeMapping TypeName="PizzaModel.vfxipaddresses">
+        <MappingFragment StoreEntitySet="vfxipaddresses">
+          <ScalarProperty Name="ipid" ColumnName="ipid" />
+          <ScalarProperty Name="ipaddress" ColumnName="ipaddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxlock">
+      <EntityTypeMapping TypeName="PizzaModel.vfxlock">
+        <MappingFragment StoreEntitySet="vfxlock">
+          <ScalarProperty Name="table" ColumnName="table" />
+          <ScalarProperty Name="record" ColumnName="record" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="idvfxlock" ColumnName="idvfxlock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxlog">
+      <EntityTypeMapping TypeName="PizzaModel.vfxlog">
+        <MappingFragment StoreEntitySet="vfxlog">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="error" ColumnName="error" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="method" ColumnName="method" />
+          <ScalarProperty Name="tables" ColumnName="tables" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="memory" ColumnName="memory" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="idvfxlog" ColumnName="idvfxlog" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxloggedusers">
+      <EntityTypeMapping TypeName="PizzaModel.vfxloggedusers">
+        <MappingFragment StoreEntitySet="vfxloggedusers">
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="networkmi" ColumnName="networkmi" />
+          <ScalarProperty Name="ipaddress" ColumnName="ipaddress" />
+          <ScalarProperty Name="lastlogin" ColumnName="lastlogin" />
+          <ScalarProperty Name="datadir" ColumnName="datadir" />
+          <ScalarProperty Name="spid" ColumnName="spid" />
+          <ScalarProperty Name="idvfxlogur" ColumnName="idvfxlogur" />
+          <ScalarProperty Name="idvfxusr" ColumnName="idvfxusr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxpdef">
+      <EntityTypeMapping TypeName="PizzaModel.vfxpdef">
+        <MappingFragment StoreEntitySet="vfxpdef">
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="descript" ColumnName="descript" />
+          <ScalarProperty Name="fieldlen" ColumnName="fieldlen" />
+          <ScalarProperty Name="ltextkey" ColumnName="ltextkey" />
+          <ScalarProperty Name="caninsert" ColumnName="caninsert" />
+          <ScalarProperty Name="askforsave" ColumnName="askforsave" />
+          <ScalarProperty Name="newlevel" ColumnName="newlevel" />
+          <ScalarProperty Name="columncnt" ColumnName="columncnt" />
+          <ScalarProperty Name="combostyle" ColumnName="combostyle" />
+          <ScalarProperty Name="proccode" ColumnName="proccode" />
+          <ScalarProperty Name="autogcode" ColumnName="autogcode" />
+          <ScalarProperty Name="useidfield" ColumnName="useidfield" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxqueries">
+      <EntityTypeMapping TypeName="PizzaModel.vfxqueries">
+        <MappingFragment StoreEntitySet="vfxqueries">
+          <ScalarProperty Name="querytitle" ColumnName="querytitle" />
+          <ScalarProperty Name="descript" ColumnName="descript" />
+          <ScalarProperty Name="selectcmd" ColumnName="selectcmd" />
+          <ScalarProperty Name="colwidth" ColumnName="colwidth" />
+          <ScalarProperty Name="fieldtitle" ColumnName="fieldtitle" />
+          <ScalarProperty Name="whereclaus" ColumnName="whereclaus" />
+          <ScalarProperty Name="orderclaus" ColumnName="orderclaus" />
+          <ScalarProperty Name="crsresult" ColumnName="crsresult" />
+          <ScalarProperty Name="userlevel" ColumnName="userlevel" />
+          <ScalarProperty Name="useraccess" ColumnName="useraccess" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="vfxqueryid" ColumnName="vfxqueryid" />
+          <ScalarProperty Name="caquery" ColumnName="caquery" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxreports">
+      <EntityTypeMapping TypeName="PizzaModel.vfxreports">
+        <MappingFragment StoreEntitySet="vfxreports">
+          <ScalarProperty Name="repid" ColumnName="repid" />
+          <ScalarProperty Name="repuser" ColumnName="repuser" />
+          <ScalarProperty Name="repform" ColumnName="repform" />
+          <ScalarProperty Name="repfile" ColumnName="repfile" />
+          <ScalarProperty Name="repcaption" ColumnName="repcaption" />
+          <ScalarProperty Name="repdesc" ColumnName="repdesc" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxres">
+      <EntityTypeMapping TypeName="PizzaModel.vfxres">
+        <MappingFragment StoreEntitySet="vfxres">
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="objname" ColumnName="objname" />
+          <ScalarProperty Name="index" ColumnName="index" />
+          <ScalarProperty Name="descending" ColumnName="descending" />
+          <ScalarProperty Name="layout" ColumnName="layout" />
+          <ScalarProperty Name="page" ColumnName="page" />
+          <ScalarProperty Name="toolbar" ColumnName="toolbar" />
+          <ScalarProperty Name="idvfxres" ColumnName="idvfxres" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxrtf">
+      <EntityTypeMapping TypeName="PizzaModel.vfxrtf">
+        <MappingFragment StoreEntitySet="vfxrtf">
+          <ScalarProperty Name="rtfid" ColumnName="rtfid" />
+          <ScalarProperty Name="rtftext" ColumnName="rtftext" />
+          <ScalarProperty Name="parenttbl" ColumnName="parenttbl" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxsdef">
+      <EntityTypeMapping TypeName="PizzaModel.vfxsdef">
+        <MappingFragment StoreEntitySet="vfxsdef">
+          <ScalarProperty Name="ftpurl" ColumnName="ftpurl" />
+          <ScalarProperty Name="ftpport" ColumnName="ftpport" />
+          <ScalarProperty Name="ftpupini" ColumnName="ftpupini" />
+          <ScalarProperty Name="ftpdwnini" ColumnName="ftpdwnini" />
+          <ScalarProperty Name="ftpupdata" ColumnName="ftpupdata" />
+          <ScalarProperty Name="ftpdwndata" ColumnName="ftpdwndata" />
+          <ScalarProperty Name="ftpupconf" ColumnName="ftpupconf" />
+          <ScalarProperty Name="ftpdwnconf" ColumnName="ftpdwnconf" />
+          <ScalarProperty Name="ftpuser" ColumnName="ftpuser" />
+          <ScalarProperty Name="ftppass" ColumnName="ftppass" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="machine" ColumnName="machine" />
+          <ScalarProperty Name="profile" ColumnName="profile" />
+          <ScalarProperty Name="up_load" ColumnName="up_load" />
+          <ScalarProperty Name="dn_load" ColumnName="dn_load" />
+          <ScalarProperty Name="use_boss" ColumnName="use_boss" />
+          <ScalarProperty Name="last_conn" ColumnName="last_conn" />
+          <ScalarProperty Name="last_up" ColumnName="last_up" />
+          <ScalarProperty Name="last_dn" ColumnName="last_dn" />
+          <ScalarProperty Name="idvfxsdef" ColumnName="idvfxsdef" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxsys">
+      <EntityTypeMapping TypeName="PizzaModel.vfxsys">
+        <MappingFragment StoreEntitySet="vfxsys">
+          <ScalarProperty Name="magic_id" ColumnName="magic_id" />
+          <ScalarProperty Name="install_gs" ColumnName="install_gs" />
+          <ScalarProperty Name="dunconnpar" ColumnName="dunconnpar" />
+          <ScalarProperty Name="updateapp" ColumnName="updateapp" />
+          <ScalarProperty Name="archpath" ColumnName="archpath" />
+          <ScalarProperty Name="install_ar" ColumnName="install_ar" />
+          <ScalarProperty Name="dyndns" ColumnName="dyndns" />
+          <ScalarProperty Name="inst_click" ColumnName="inst_click" />
+          <ScalarProperty Name="appversion" ColumnName="appversion" />
+          <ScalarProperty Name="lastcheckd" ColumnName="lastcheckd" />
+          <ScalarProperty Name="updtype" ColumnName="updtype" />
+          <ScalarProperty Name="customize" ColumnName="customize" />
+          <ScalarProperty Name="autologin" ColumnName="autologin" />
+          <ScalarProperty Name="lastsync" ColumnName="lastsync" />
+          <ScalarProperty Name="install_fc" ColumnName="install_fc" />
+          <ScalarProperty Name="install_lh" ColumnName="install_lh" />
+          <ScalarProperty Name="idvfxsys" ColumnName="idvfxsys" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxsysid">
+      <EntityTypeMapping TypeName="PizzaModel.vfxsysid">
+        <MappingFragment StoreEntitySet="vfxsysid">
+          <ScalarProperty Name="keyname" ColumnName="keyname" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="maxlen" ColumnName="maxlen" />
+          <ScalarProperty Name="idvfxsysid" ColumnName="idvfxsysid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxtasklist">
+      <EntityTypeMapping TypeName="PizzaModel.vfxtasklist">
+        <MappingFragment StoreEntitySet="vfxtasklist">
+          <ScalarProperty Name="idtasklist" ColumnName="idtasklist" />
+          <ScalarProperty Name="descr" ColumnName="descr" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="form" ColumnName="form" />
+          <ScalarProperty Name="idkeyfield" ColumnName="idkeyfield" />
+          <ScalarProperty Name="formdescr" ColumnName="formdescr" />
+          <ScalarProperty Name="assnum" ColumnName="assnum" />
+          <ScalarProperty Name="groupid" ColumnName="groupid" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="ins_usr" ColumnName="ins_usr" />
+          <ScalarProperty Name="ins_date" ColumnName="ins_date" />
+          <ScalarProperty Name="edt_usr" ColumnName="edt_usr" />
+          <ScalarProperty Name="edt_date" ColumnName="edt_date" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxtaskliststatus">
+      <EntityTypeMapping TypeName="PizzaModel.vfxtaskliststatus">
+        <MappingFragment StoreEntitySet="vfxtaskliststatus">
+          <ScalarProperty Name="idtaskstat" ColumnName="idtaskstat" />
+          <ScalarProperty Name="descr" ColumnName="descr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxtipoftheday">
+      <EntityTypeMapping TypeName="PizzaModel.vfxtipoftheday">
+        <MappingFragment StoreEntitySet="vfxtipoftheday">
+          <ScalarProperty Name="idvfxtip" ColumnName="idvfxtip" />
+          <ScalarProperty Name="tiptext" ColumnName="tiptext" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxtoolbox">
+      <EntityTypeMapping TypeName="PizzaModel.vfxtoolbox">
+        <MappingFragment StoreEntitySet="vfxtoolbox">
+          <ScalarProperty Name="uniqueid" ColumnName="uniqueid" />
+          <ScalarProperty Name="showtype" ColumnName="showtype" />
+          <ScalarProperty Name="tooltypeid" ColumnName="tooltypeid" />
+          <ScalarProperty Name="tooltype" ColumnName="tooltype" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="toolname" ColumnName="toolname" />
+          <ScalarProperty Name="imagefile" ColumnName="imagefile" />
+          <ScalarProperty Name="classtype" ColumnName="classtype" />
+          <ScalarProperty Name="setid" ColumnName="setid" />
+          <ScalarProperty Name="classname" ColumnName="classname" />
+          <ScalarProperty Name="classlib" ColumnName="classlib" />
+          <ScalarProperty Name="tooltip" ColumnName="tooltip" />
+          <ScalarProperty Name="helpfile" ColumnName="helpfile" />
+          <ScalarProperty Name="helpid" ColumnName="helpid" />
+          <ScalarProperty Name="tooldata" ColumnName="tooldata" />
+          <ScalarProperty Name="displayord" ColumnName="displayord" />
+          <ScalarProperty Name="lockadd" ColumnName="lockadd" />
+          <ScalarProperty Name="lockdelete" ColumnName="lockdelete" />
+          <ScalarProperty Name="lockrename" ColumnName="lockrename" />
+          <ScalarProperty Name="inactive" ColumnName="inactive" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="modified" ColumnName="modified" />
+          <ScalarProperty Name="idvfxtbox" ColumnName="idvfxtbox" />
+          <ScalarProperty Name="idvfxttype" ColumnName="idvfxttype" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxtooltype">
+      <EntityTypeMapping TypeName="PizzaModel.vfxtooltype">
+        <MappingFragment StoreEntitySet="vfxtooltype">
+          <ScalarProperty Name="uniqueid" ColumnName="uniqueid" />
+          <ScalarProperty Name="showtype" ColumnName="showtype" />
+          <ScalarProperty Name="tooltype" ColumnName="tooltype" />
+          <ScalarProperty Name="classname" ColumnName="classname" />
+          <ScalarProperty Name="classlib" ColumnName="classlib" />
+          <ScalarProperty Name="filetype" ColumnName="filetype" />
+          <ScalarProperty Name="datavalues" ColumnName="datavalues" />
+          <ScalarProperty Name="shownew" ColumnName="shownew" />
+          <ScalarProperty Name="propsheet" ColumnName="propsheet" />
+          <ScalarProperty Name="defaultid" ColumnName="defaultid" />
+          <ScalarProperty Name="displayord" ColumnName="displayord" />
+          <ScalarProperty Name="tooltip" ColumnName="tooltip" />
+          <ScalarProperty Name="inactive" ColumnName="inactive" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="modified" ColumnName="modified" />
+          <ScalarProperty Name="idvfxttype" ColumnName="idvfxttype" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxusergroups">
+      <EntityTypeMapping TypeName="PizzaModel.vfxusergroups">
+        <MappingFragment StoreEntitySet="vfxusergroups">
+          <ScalarProperty Name="groupid" ColumnName="groupid" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="idvfxusrgr" ColumnName="idvfxusrgr" />
+          <ScalarProperty Name="idvfxusr" ColumnName="idvfxusr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxuserlog">
+      <EntityTypeMapping TypeName="PizzaModel.vfxuserlog">
+        <MappingFragment StoreEntitySet="vfxuserlog">
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="logout" ColumnName="logout" />
+          <ScalarProperty Name="ipaddress" ColumnName="ipaddress" />
+          <ScalarProperty Name="idvfxusrlg" ColumnName="idvfxusrlg" />
+          <ScalarProperty Name="idvfxusr" ColumnName="idvfxusr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxusr">
+      <EntityTypeMapping TypeName="PizzaModel.vfxusr">
+        <MappingFragment StoreEntitySet="vfxusr">
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="userlevel" ColumnName="userlevel" />
+          <ScalarProperty Name="useraccess" ColumnName="useraccess" />
+          <ScalarProperty Name="firstview" ColumnName="firstview" />
+          <ScalarProperty Name="lastsel" ColumnName="lastsel" />
+          <ScalarProperty Name="formsize" ColumnName="formsize" />
+          <ScalarProperty Name="agent" ColumnName="agent" />
+          <ScalarProperty Name="favorites" ColumnName="favorites" />
+          <ScalarProperty Name="lastfile" ColumnName="lastfile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="chpassall" ColumnName="chpassall" />
+          <ScalarProperty Name="chpassnext" ColumnName="chpassnext" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="allusrcust" ColumnName="allusrcust" />
+          <ScalarProperty Name="mulusrlog" ColumnName="mulusrlog" />
+          <ScalarProperty Name="fltrpermit" ColumnName="fltrpermit" />
+          <ScalarProperty Name="mreppermit" ColumnName="mreppermit" />
+          <ScalarProperty Name="idvfxusr" ColumnName="idvfxusr" />
+          <ScalarProperty Name="ntlogon" ColumnName="ntlogon" />
+          <ScalarProperty Name="strongpass" ColumnName="strongpass" />
+          <ScalarProperty Name="uniquepass" ColumnName="uniquepass" />
+          <ScalarProperty Name="passexpiry" ColumnName="passexpiry" />
+          <ScalarProperty Name="histrypass" ColumnName="histrypass" />
+          <ScalarProperty Name="notactive" ColumnName="notactive" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxplist">
+      <EntityTypeMapping TypeName="PizzaModel.vfxplist">
+        <MappingFragment StoreEntitySet="vfxplist">
+          <ScalarProperty Name="picklist" ColumnName="picklist" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="descript" ColumnName="descript" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="proccode" ColumnName="proccode" />
+          <ScalarProperty Name="idvfxplist" ColumnName="idvfxplist" />
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxrep">
+      <EntityTypeMapping TypeName="PizzaModel.vfxrep">
+        <MappingFragment StoreEntitySet="vfxrep">
+          <ScalarProperty Name="reportid" ColumnName="reportid" />
+          <ScalarProperty Name="rtypeid" ColumnName="rtypeid" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="descr" ColumnName="descr" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxrtemp">
+      <EntityTypeMapping TypeName="PizzaModel.vfxrtemp">
+        <MappingFragment StoreEntitySet="vfxrtemp">
+          <ScalarProperty Name="rtemplid" ColumnName="rtemplid" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="descr" ColumnName="descr" />
+          <ScalarProperty Name="rtypeid" ColumnName="rtypeid" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="timestamp_column" ColumnName="timestamp_column" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vfxrtype">
+      <EntityTypeMapping TypeName="PizzaModel.vfxrtype">
+        <MappingFragment StoreEntitySet="vfxrtype">
+          <ScalarProperty Name="rtypeid" ColumnName="rtypeid" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="descr" ColumnName="descr" />
+          <ScalarProperty Name="sort" ColumnName="sort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

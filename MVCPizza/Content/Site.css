@@ -1,0 +1,54 @@
+﻿html {
+    background: url('../Images/Hintergrund_Pizza.png') no-repeat top center fixed;
+    background-size: cover;
+    text-align: center;
+}
+
+body {
+    background-color: transparent;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    top: 80px;
+    position: relative;
+    background-color: #e58f4f;
+    text-align: left;
+}
+.body-content .text-danger {color:chartreuse;}
+
+.Image_right_bottom {
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+}
+
+.Image_left_top {
+    position: fixed;
+    top: 130px;
+    left: 30px;
+}
+
+.Image_center {
+    top: 100px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}

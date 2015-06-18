@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MVCPizza.products>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.productcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.picturefile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productprice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.barcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zusaetze)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category.categoryname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.productcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.picturefile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productprice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.barcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zusaetze)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category.categoryname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.productid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.productid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.productid })
+        </td>
+    </tr>
+}
+
+</table>

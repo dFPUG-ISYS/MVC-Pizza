@@ -1,0 +1,3 @@
+C:\Projekte\PizzaSolution_AT2015_Konserve\MVCVFPizza.Tests\obj\Debug\MVCVFPizza.Tests.csprojResolveAssemblyReference.cache
+C:\Projekte\PizzaSolution_AT2015_Konserve\MVCVFPizza.Tests\obj\Debug\MVC_VFPizza.Tests.dll
+C:\Projekte\PizzaSolution_AT2015_Konserve\MVCVFPizza.Tests\obj\Debug\MVC_VFPizza.Tests.pdb

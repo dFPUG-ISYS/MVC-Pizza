@@ -1,0 +1,703 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PizzaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="categoryid" />
+    </Key>
+    <Property Name="categoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoryname" Type="varchar" MaxLength="50" />
+    <Property Name="categorydescription" Type="varchar(max)" />
+    <Property Name="superiorcategoryid" Type="int" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="customerid" />
+    </Key>
+    <Property Name="customerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customername" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="100" />
+    <Property Name="contactperson" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="phonetype" Type="varchar" MaxLength="30" />
+    <Property Name="email" Type="varchar" MaxLength="254" />
+    <Property Name="skypename" Type="varchar" MaxLength="32" />
+    <Property Name="url" Type="varchar" MaxLength="254" />
+  </EntityType>
+  <EntityType Name="orderdetails">
+    <Key>
+      <PropertyRef Name="orderdetailid" />
+    </Key>
+    <Property Name="orderdetailid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderid" Type="int" />
+    <Property Name="productid" Type="int" />
+    <Property Name="productcode" Type="varchar" MaxLength="6" />
+    <Property Name="quantity" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="price" Type="numeric" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="orderid" />
+    </Key>
+    <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderdate" Type="date" />
+    <Property Name="customerid" Type="int" />
+    <Property Name="shiptoname" Type="varchar" MaxLength="50" />
+    <Property Name="shiptoaddress" Type="varchar" MaxLength="100" />
+    <Property Name="totalsum" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="paid" Type="bit" />
+  </EntityType>
+  <EntityType Name="orderssecurity">
+    <Key>
+      <PropertyRef Name="orderssecurityid" />
+    </Key>
+    <Property Name="orderssecurityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderid" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="productid" />
+    </Key>
+    <Property Name="productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoryid" Type="int" />
+    <Property Name="productcode" Type="varchar" MaxLength="6" />
+    <Property Name="productname" Type="varchar" MaxLength="50" />
+    <Property Name="picturefile" Type="varchar(max)" />
+    <Property Name="productprice" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="barcode" Type="varchar" MaxLength="13" />
+    <Property Name="supplierid" Type="int" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="zusaetze" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="vfxaudit">
+    <Key>
+      <PropertyRef Name="idvfxaudit" />
+    </Key>
+    <Property Name="table" Type="varchar" MaxLength="50" />
+    <Property Name="recordid" Type="varchar" MaxLength="30" />
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="datetime" Type="datetime" />
+    <Property Name="changes" Type="varchar(max)" />
+    <Property Name="idvfxaudit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxauditedtables">
+    <Key>
+      <PropertyRef Name="idvfxatbls" />
+    </Key>
+    <Property Name="audtable" Type="varchar" MaxLength="50" />
+    <Property Name="idvfxatbls" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxdocuments">
+    <Key>
+      <PropertyRef Name="docid" />
+    </Key>
+    <Property Name="docid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="filename" Type="varchar" MaxLength="100" />
+    <Property Name="filedirect" Type="varchar" MaxLength="200" />
+    <Property Name="parentkey" Type="int" />
+    <Property Name="filedescr" Type="varchar" MaxLength="50" />
+    <Property Name="parenttbl" Type="varchar" MaxLength="32" />
+    <Property Name="rtfid" Type="int" />
+    <Property Name="doctype" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="entryid" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="vfxfilter">
+    <Key>
+      <PropertyRef Name="idvfxfiltr" />
+    </Key>
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="objname" Type="varchar" MaxLength="128" />
+    <Property Name="index" Type="varchar(max)" />
+    <Property Name="descending" Type="bit" />
+    <Property Name="layout" Type="varchar(max)" />
+    <Property Name="page" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="toolbar" Type="bit" />
+    <Property Name="idvfxfiltr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxfopen">
+    <Key>
+      <PropertyRef Name="idvfxfopen" />
+    </Key>
+    <Property Name="objectid" Type="varchar" MaxLength="10" />
+    <Property Name="objectno" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="groupcap" Type="varchar" MaxLength="32" />
+    <Property Name="title" Type="varchar" MaxLength="32" />
+    <Property Name="descr" Type="varchar" MaxLength="120" />
+    <Property Name="form" Type="varchar" MaxLength="32" />
+    <Property Name="parameter" Type="varchar(max)" />
+    <Property Name="viewlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="newlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="copylevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="editlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="printlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="inetlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="eraselevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="favorites" Type="bit" />
+    <Property Name="primarykey" Type="varchar(max)" />
+    <Property Name="favordescr" Type="varchar(max)" />
+    <Property Name="explevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="filtrlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="iconfile" Type="varchar(max)" />
+    <Property Name="notvisible" Type="bit" />
+    <Property Name="tbrcbosort" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="parentno" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="keybkey" Type="varchar" MaxLength="1" />
+    <Property Name="allowedfor" Type="varchar(max)" />
+    <Property Name="idvfxfopen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xapname" Type="varchar" MaxLength="120" />
+    <Property Name="auditlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="largeicon" Type="bit" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxgrouprights">
+    <Key>
+      <PropertyRef Name="idvfxgrrgh" />
+    </Key>
+    <Property Name="groupid" Type="int" />
+    <Property Name="formname" Type="varchar" MaxLength="32" />
+    <Property Name="viewpermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="inspermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="editpermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="delpermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="prtpermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="copypermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="exppermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="fltrpermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="objectid" Type="varchar" MaxLength="10" />
+    <Property Name="objectno" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="idvfxgrrgh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idvfxfopen" Type="int" />
+  </EntityType>
+  <EntityType Name="vfxgroups">
+    <Key>
+      <PropertyRef Name="groupid" />
+    </Key>
+    <Property Name="groupid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="groupdescr" Type="varchar" MaxLength="32" />
+    <Property Name="fltrpermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="mreppermit" Type="numeric" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="vfxipaddresses">
+    <Key>
+      <PropertyRef Name="ipid" />
+    </Key>
+    <Property Name="ipid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ipaddress" Type="varchar" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="vfxlock">
+    <Key>
+      <PropertyRef Name="idvfxlock" />
+    </Key>
+    <Property Name="table" Type="varchar" MaxLength="32" />
+    <Property Name="record" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="date" Type="date" />
+    <Property Name="time" Type="varchar" MaxLength="10" />
+    <Property Name="user_name" Type="varchar" MaxLength="32" />
+    <Property Name="idvfxlock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxlog">
+    <Key>
+      <PropertyRef Name="idvfxlog" />
+    </Key>
+    <Property Name="type" Type="varchar" MaxLength="10" />
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="date" Type="date" />
+    <Property Name="time" Type="varchar" MaxLength="10" />
+    <Property Name="error" Type="numeric" Precision="4" Scale="0" />
+    <Property Name="message" Type="varchar(max)" />
+    <Property Name="method" Type="varchar(max)" />
+    <Property Name="tables" Type="varchar(max)" />
+    <Property Name="code" Type="varchar(max)" />
+    <Property Name="memory" Type="varchar(max)" />
+    <Property Name="status" Type="varchar(max)" />
+    <Property Name="idvfxlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxloggedusers">
+    <Key>
+      <PropertyRef Name="idvfxlogur" />
+    </Key>
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="networkmi" Type="varchar" MaxLength="50" />
+    <Property Name="ipaddress" Type="varchar" MaxLength="15" />
+    <Property Name="lastlogin" Type="datetime" />
+    <Property Name="datadir" Type="varchar" MaxLength="50" />
+    <Property Name="spid" Type="int" />
+    <Property Name="idvfxlogur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idvfxusr" Type="int" />
+  </EntityType>
+  <EntityType Name="vfxpdef">
+    <Key>
+      <PropertyRef Name="parentid" />
+    </Key>
+    <Property Name="parentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="30" />
+    <Property Name="descript" Type="varchar" MaxLength="60" />
+    <Property Name="fieldlen" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="ltextkey" Type="bit" />
+    <Property Name="caninsert" Type="bit" />
+    <Property Name="askforsave" Type="bit" />
+    <Property Name="newlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="columncnt" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="combostyle" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="proccode" Type="varchar(max)" />
+    <Property Name="autogcode" Type="bit" />
+    <Property Name="useidfield" Type="bit" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\PROJEKTE\PIZZASOLUTION_AT2015\MVCPIZZA\APP_DATA\VFPIZZASQL2012.MDF.dbo.vfxplist' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+  <EntityType Name="vfxplist">
+    <Key>
+      <PropertyRef Name="idvfxplist" />
+      <PropertyRef Name="timestamp_column" />
+    </Key>
+    <Property Name="picklist" Type="varchar" MaxLength="30" />
+    <Property Name="code" Type="varchar" MaxLength="30" />
+    <Property Name="descript" Type="varchar" MaxLength="30" />
+    <Property Name="active" Type="bit" />
+    <Property Name="value" Type="varchar" MaxLength="10" />
+    <Property Name="proccode" Type="varchar(max)" />
+    <Property Name="idvfxplist" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parentid" Type="int" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxqueries">
+    <Key>
+      <PropertyRef Name="vfxqueryid" />
+    </Key>
+    <Property Name="querytitle" Type="varchar" MaxLength="50" />
+    <Property Name="descript" Type="varchar(max)" />
+    <Property Name="selectcmd" Type="varchar(max)" />
+    <Property Name="colwidth" Type="varchar(max)" />
+    <Property Name="fieldtitle" Type="varchar(max)" />
+    <Property Name="whereclaus" Type="varchar(max)" />
+    <Property Name="orderclaus" Type="varchar" MaxLength="32" />
+    <Property Name="crsresult" Type="varchar" MaxLength="32" />
+    <Property Name="userlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="useraccess" Type="varchar" MaxLength="10" />
+    <Property Name="active" Type="bit" />
+    <Property Name="vfxqueryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="caquery" Type="bit" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\PROJEKTE\PIZZASOLUTION_AT2015\MVCPIZZA\APP_DATA\VFPIZZASQL2012.MDF.dbo.vfxrep' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+  <EntityType Name="vfxrep">
+    <Key>
+      <PropertyRef Name="reportid" />
+      <PropertyRef Name="timestamp_column" />
+    </Key>
+    <Property Name="reportid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rtypeid" Type="int" />
+    <Property Name="filename" Type="varchar" MaxLength="10" />
+    <Property Name="descr" Type="varchar(max)" />
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxreports">
+    <Key>
+      <PropertyRef Name="repid" />
+    </Key>
+    <Property Name="repid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="repuser" Type="varchar" MaxLength="32" />
+    <Property Name="repform" Type="varchar" MaxLength="32" />
+    <Property Name="repfile" Type="varchar" MaxLength="254" />
+    <Property Name="repcaption" Type="varchar" MaxLength="64" />
+    <Property Name="repdesc" Type="varchar(max)" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxres">
+    <Key>
+      <PropertyRef Name="idvfxres" />
+    </Key>
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="objname" Type="varchar" MaxLength="128" />
+    <Property Name="index" Type="varchar(max)" />
+    <Property Name="descending" Type="bit" />
+    <Property Name="layout" Type="varchar(max)" />
+    <Property Name="page" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="toolbar" Type="bit" />
+    <Property Name="idvfxres" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\PROJEKTE\PIZZASOLUTION_AT2015\MVCPIZZA\APP_DATA\VFPIZZASQL2012.MDF.dbo.vfxrtemp' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+  <EntityType Name="vfxrtemp">
+    <Key>
+      <PropertyRef Name="rtemplid" />
+      <PropertyRef Name="timestamp_column" />
+    </Key>
+    <Property Name="rtemplid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="filename" Type="varchar" MaxLength="10" />
+    <Property Name="descr" Type="varchar(max)" />
+    <Property Name="rtypeid" Type="int" />
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxrtf">
+    <Key>
+      <PropertyRef Name="rtfid" />
+    </Key>
+    <Property Name="rtfid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rtftext" Type="varchar(max)" />
+    <Property Name="parenttbl" Type="varchar" MaxLength="20" />
+    <Property Name="parentid" Type="int" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\PROJEKTE\PIZZASOLUTION_AT2015\MVCPIZZA\APP_DATA\VFPIZZASQL2012.MDF.dbo.vfxrtype' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+  <EntityType Name="vfxrtype">
+    <Key>
+      <PropertyRef Name="rtypeid" />
+    </Key>
+    <Property Name="rtypeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="filename" Type="varchar" MaxLength="6" />
+    <Property Name="descr" Type="varchar" MaxLength="40" />
+    <Property Name="sort" Type="int" />
+  </EntityType>
+  <EntityType Name="vfxsdef">
+    <Key>
+      <PropertyRef Name="idvfxsdef" />
+    </Key>
+    <Property Name="ftpurl" Type="varchar(max)" />
+    <Property Name="ftpport" Type="int" />
+    <Property Name="ftpupini" Type="varchar" MaxLength="100" />
+    <Property Name="ftpdwnini" Type="varchar" MaxLength="100" />
+    <Property Name="ftpupdata" Type="varchar" MaxLength="100" />
+    <Property Name="ftpdwndata" Type="varchar" MaxLength="100" />
+    <Property Name="ftpupconf" Type="varchar" MaxLength="100" />
+    <Property Name="ftpdwnconf" Type="varchar" MaxLength="100" />
+    <Property Name="ftpuser" Type="varchar" MaxLength="32" />
+    <Property Name="ftppass" Type="varchar" MaxLength="32" />
+    <Property Name="version" Type="varchar" MaxLength="5" />
+    <Property Name="code" Type="varchar" MaxLength="4" />
+    <Property Name="machine" Type="varchar" MaxLength="15" />
+    <Property Name="profile" Type="varchar" MaxLength="30" />
+    <Property Name="up_load" Type="bit" />
+    <Property Name="dn_load" Type="bit" />
+    <Property Name="use_boss" Type="bit" />
+    <Property Name="last_conn" Type="datetime" />
+    <Property Name="last_up" Type="datetime" />
+    <Property Name="last_dn" Type="datetime" />
+    <Property Name="idvfxsdef" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxsys">
+    <Key>
+      <PropertyRef Name="idvfxsys" />
+    </Key>
+    <Property Name="magic_id" Type="varchar" MaxLength="15" />
+    <Property Name="install_gs" Type="varchar(max)" />
+    <Property Name="dunconnpar" Type="text" />
+    <Property Name="updateapp" Type="varchar(max)" />
+    <Property Name="archpath" Type="varchar(max)" />
+    <Property Name="install_ar" Type="varchar(max)" />
+    <Property Name="dyndns" Type="text" />
+    <Property Name="inst_click" Type="varchar(max)" />
+    <Property Name="appversion" Type="varchar" MaxLength="14" />
+    <Property Name="lastcheckd" Type="date" />
+    <Property Name="updtype" Type="int" />
+    <Property Name="customize" Type="varchar(max)" />
+    <Property Name="autologin" Type="int" />
+    <Property Name="lastsync" Type="datetime" />
+    <Property Name="install_fc" Type="varchar(max)" />
+    <Property Name="install_lh" Type="varchar(max)" />
+    <Property Name="idvfxsys" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxsysid">
+    <Key>
+      <PropertyRef Name="idvfxsysid" />
+    </Key>
+    <Property Name="keyname" Type="varchar" MaxLength="32" />
+    <Property Name="value" Type="varchar" MaxLength="10" />
+    <Property Name="maxlen" Type="numeric" Precision="4" Scale="0" />
+    <Property Name="idvfxsysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxtasklist">
+    <Key>
+      <PropertyRef Name="idtasklist" />
+    </Key>
+    <Property Name="idtasklist" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descr" Type="varchar(max)" />
+    <Property Name="deadline" Type="datetime" />
+    <Property Name="status" Type="int" />
+    <Property Name="form" Type="varchar" MaxLength="32" />
+    <Property Name="idkeyfield" Type="varchar" MaxLength="36" />
+    <Property Name="formdescr" Type="varchar(max)" />
+    <Property Name="assnum" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="groupid" Type="int" />
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="icon" Type="varchar(max)" />
+    <Property Name="ins_usr" Type="int" />
+    <Property Name="ins_date" Type="datetime" />
+    <Property Name="edt_usr" Type="int" />
+    <Property Name="edt_date" Type="datetime" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxtaskliststatus">
+    <Key>
+      <PropertyRef Name="idtaskstat" />
+    </Key>
+    <Property Name="idtaskstat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descr" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="vfxtipoftheday">
+    <Key>
+      <PropertyRef Name="idvfxtip" />
+    </Key>
+    <Property Name="idvfxtip" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tiptext" Type="varchar(max)" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxtoolbox">
+    <Key>
+      <PropertyRef Name="idvfxtbox" />
+    </Key>
+    <Property Name="uniqueid" Type="varchar" MaxLength="25" />
+    <Property Name="showtype" Type="varchar" MaxLength="1" />
+    <Property Name="tooltypeid" Type="varchar" MaxLength="25" />
+    <Property Name="tooltype" Type="varchar(max)" />
+    <Property Name="parentid" Type="varchar" MaxLength="25" />
+    <Property Name="toolname" Type="varchar" MaxLength="100" />
+    <Property Name="imagefile" Type="varchar(max)" />
+    <Property Name="classtype" Type="varchar" MaxLength="10" />
+    <Property Name="setid" Type="varchar(max)" />
+    <Property Name="classname" Type="varchar(max)" />
+    <Property Name="classlib" Type="varchar(max)" />
+    <Property Name="tooltip" Type="varchar(max)" />
+    <Property Name="helpfile" Type="varchar(max)" />
+    <Property Name="helpid" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="tooldata" Type="varchar(max)" />
+    <Property Name="displayord" Type="int" />
+    <Property Name="lockadd" Type="bit" />
+    <Property Name="lockdelete" Type="bit" />
+    <Property Name="lockrename" Type="bit" />
+    <Property Name="inactive" Type="bit" />
+    <Property Name="user" Type="varchar(max)" />
+    <Property Name="modified" Type="datetime" />
+    <Property Name="idvfxtbox" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idvfxttype" Type="int" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxtooltype">
+    <Key>
+      <PropertyRef Name="idvfxttype" />
+    </Key>
+    <Property Name="uniqueid" Type="varchar" MaxLength="25" />
+    <Property Name="showtype" Type="varchar" MaxLength="1" />
+    <Property Name="tooltype" Type="varchar" MaxLength="50" />
+    <Property Name="classname" Type="varchar(max)" />
+    <Property Name="classlib" Type="varchar(max)" />
+    <Property Name="filetype" Type="varchar(max)" />
+    <Property Name="datavalues" Type="varchar(max)" />
+    <Property Name="shownew" Type="bit" />
+    <Property Name="propsheet" Type="bit" />
+    <Property Name="defaultid" Type="varchar" MaxLength="25" />
+    <Property Name="displayord" Type="int" />
+    <Property Name="tooltip" Type="varchar(max)" />
+    <Property Name="inactive" Type="bit" />
+    <Property Name="user" Type="varchar(max)" />
+    <Property Name="modified" Type="datetime" />
+    <Property Name="idvfxttype" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxusergroups">
+    <Key>
+      <PropertyRef Name="idvfxusrgr" />
+    </Key>
+    <Property Name="groupid" Type="int" />
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="idvfxusrgr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idvfxusr" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxuserlog">
+    <Key>
+      <PropertyRef Name="idvfxusrlg" />
+    </Key>
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="login" Type="datetime" />
+    <Property Name="logout" Type="datetime" />
+    <Property Name="ipaddress" Type="varchar" MaxLength="15" />
+    <Property Name="idvfxusrlg" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idvfxusr" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vfxusr">
+    <Key>
+      <PropertyRef Name="idvfxusr" />
+    </Key>
+    <Property Name="user" Type="varchar" MaxLength="32" />
+    <Property Name="password" Type="varchar" MaxLength="32" />
+    <Property Name="user_name" Type="varchar" MaxLength="32" />
+    <Property Name="userlevel" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="useraccess" Type="varchar(max)" />
+    <Property Name="firstview" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="lastsel" Type="varchar(max)" />
+    <Property Name="formsize" Type="numeric" Precision="2" Scale="1" />
+    <Property Name="agent" Type="bit" />
+    <Property Name="favorites" Type="varchar(max)" />
+    <Property Name="lastfile" Type="numeric" Precision="2" Scale="0" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="chpassall" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="chpassnext" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="language" Type="varchar" MaxLength="3" />
+    <Property Name="allusrcust" Type="bit" />
+    <Property Name="mulusrlog" Type="bit" />
+    <Property Name="fltrpermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="mreppermit" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="idvfxusr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ntlogon" Type="varchar" MaxLength="32" />
+    <Property Name="strongpass" Type="bit" />
+    <Property Name="uniquepass" Type="bit" />
+    <Property Name="passexpiry" Type="date" />
+    <Property Name="histrypass" Type="varchar(max)" />
+    <Property Name="notactive" Type="bit" />
+    <Property Name="timestamp_column" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_categoryid">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="categoryid" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="categoryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_customerid">
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="customerid" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="customerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_orderid">
+    <End Role="orders" Type="Self.orders" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="orderid" />
+      </Principal>
+      <Dependent Role="orderdetails">
+        <PropertyRef Name="orderid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_productid">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="orderdetails">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PizzaModelStoreContainer">
+    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orderdetails" EntityType="Self.orderdetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orderssecurity" EntityType="Self.orderssecurity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxaudit" EntityType="Self.vfxaudit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxauditedtables" EntityType="Self.vfxauditedtables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxdocuments" EntityType="Self.vfxdocuments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxfilter" EntityType="Self.vfxfilter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxfopen" EntityType="Self.vfxfopen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxgrouprights" EntityType="Self.vfxgrouprights" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxgroups" EntityType="Self.vfxgroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxipaddresses" EntityType="Self.vfxipaddresses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxlock" EntityType="Self.vfxlock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxlog" EntityType="Self.vfxlog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxloggedusers" EntityType="Self.vfxloggedusers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxpdef" EntityType="Self.vfxpdef" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxqueries" EntityType="Self.vfxqueries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxreports" EntityType="Self.vfxreports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxres" EntityType="Self.vfxres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxrtf" EntityType="Self.vfxrtf" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxsdef" EntityType="Self.vfxsdef" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxsys" EntityType="Self.vfxsys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxsysid" EntityType="Self.vfxsysid" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxtasklist" EntityType="Self.vfxtasklist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxtaskliststatus" EntityType="Self.vfxtaskliststatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxtipoftheday" EntityType="Self.vfxtipoftheday" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxtoolbox" EntityType="Self.vfxtoolbox" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxtooltype" EntityType="Self.vfxtooltype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxusergroups" EntityType="Self.vfxusergroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxuserlog" EntityType="Self.vfxuserlog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxusr" EntityType="Self.vfxusr" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vfxplist" EntityType="Self.vfxplist" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vfxplist].[picklist] AS [picklist], 
+    [vfxplist].[code] AS [code], 
+    [vfxplist].[descript] AS [descript], 
+    [vfxplist].[active] AS [active], 
+    [vfxplist].[value] AS [value], 
+    [vfxplist].[proccode] AS [proccode], 
+    [vfxplist].[idvfxplist] AS [idvfxplist], 
+    [vfxplist].[parentid] AS [parentid], 
+    [vfxplist].[timestamp_column] AS [timestamp_column]
+    FROM [dbo].[vfxplist] AS [vfxplist]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vfxrep" EntityType="Self.vfxrep" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vfxrep].[reportid] AS [reportid], 
+    [vfxrep].[rtypeid] AS [rtypeid], 
+    [vfxrep].[filename] AS [filename], 
+    [vfxrep].[descr] AS [descr], 
+    [vfxrep].[user] AS [user], 
+    [vfxrep].[timestamp_column] AS [timestamp_column]
+    FROM [dbo].[vfxrep] AS [vfxrep]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vfxrtemp" EntityType="Self.vfxrtemp" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vfxrtemp].[rtemplid] AS [rtemplid], 
+    [vfxrtemp].[filename] AS [filename], 
+    [vfxrtemp].[descr] AS [descr], 
+    [vfxrtemp].[rtypeid] AS [rtypeid], 
+    [vfxrtemp].[user] AS [user], 
+    [vfxrtemp].[timestamp_column] AS [timestamp_column]
+    FROM [dbo].[vfxrtemp] AS [vfxrtemp]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vfxrtype" EntityType="Self.vfxrtype" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vfxrtype].[rtypeid] AS [rtypeid], 
+    [vfxrtype].[filename] AS [filename], 
+    [vfxrtype].[descr] AS [descr], 
+    [vfxrtype].[sort] AS [sort]
+    FROM [dbo].[vfxrtype] AS [vfxrtype]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_categoryid" Association="Self.fk_categoryid">
+      <End Role="category" EntitySet="category" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="fk_customerid" Association="Self.fk_customerid">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="fk_orderid" Association="Self.fk_orderid">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="orderdetails" EntitySet="orderdetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_productid" Association="Self.fk_productid">
+      <End Role="products" EntitySet="products" />
+      <End Role="orderdetails" EntitySet="orderdetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
